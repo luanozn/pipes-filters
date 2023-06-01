@@ -2,20 +2,27 @@ package filters;
 
 import entities.Order;
 
-// Contexto que mantém os dados e resultados entre os filtros
+/**
+ *   Contexto que mantém os dados e resultados entre os filtros
+ */
 public class ContextFilter {
 
+    /**
+     * Verifica se o usuário está autenticado no contexto atual
+     */
     private boolean authenticated;
+
+    /**
+     * Verifica se o pedido é válido no contexto atual
+     */
     private boolean validated;
     private Order order;
 
     public ContextFilter() {}
 
-    public ContextFilter(boolean authenticated, boolean validated, Order order) {
-        this.authenticated = authenticated;
-        this.validated = validated;
-        this.order = order;
-    }
+    /**
+     * Getters e setters básicos
+     */
 
     public boolean isAuthenticated() {
         return authenticated;

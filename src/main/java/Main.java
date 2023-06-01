@@ -14,6 +14,6 @@ public class Main {
                 "mock_product"
         ));
 
-        pipeline.executarPipeline(contexto);
+        pipeline.executePipeline(contexto);
     }
 }

@@ -3,6 +3,9 @@ package filters;
 import exceptions.BrokenPipelineException;
 import util.RequestHandler;
 
+/**
+ * Classe que realiza a validação de um pedido
+ */
 public class ValidationFilter implements Filter{
 
     @Override

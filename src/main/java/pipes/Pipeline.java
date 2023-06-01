@@ -6,21 +6,29 @@ import filters.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Classe referente ao pipeline que será executado, ela define os pipes e os filters que serão utilizados e a ordem dos mesmos.
+ */
 public class Pipeline {
-    private List<Filter> filtros;
+    private final List<Filter> filters;
 
     public Pipeline() {
-        filtros = new ArrayList<>();
-        // Adicione os filtros específicos do comércio eletrônico ao pipeline
-        filtros.add(new AuthenticationFilter());
-        filtros.add(new ValidationFilter());
-        filtros.add(new ProcessingFilter());
+        filters = new ArrayList<>();
+        filters.add(new AuthenticationFilter());
+        filters.add(new ValidationFilter());
+        filters.add(new ProcessingFilter());
     }
 
-    public void executarPipeline(ContextFilter contexto) {
+
+    /**
+     * Método que executa a pipeline, caso haja algum problema na execução da mesma, a exceção BrokenPipelineException é lançada e tratada.
+     * @param contexto Contexto que mantém os dados e resultados entre os filtros
+     */
+    public void executePipeline(ContextFilter contexto) {
         try {
-            for (Filter filtro : filtros) {
-                filtro.execute(contexto);
+            for (Filter filter : filters) {
+                filter.execute(contexto);
             }
         } catch (BrokenPipelineException brokenPipeline) {
             System.out.println("\n\n");

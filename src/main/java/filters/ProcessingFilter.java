@@ -1,9 +1,12 @@
 package filters;
 
 import exceptions.BrokenPipelineException;
-import java.util.concurrent.TimeUnit;
 import util.RequestHandler;
 
+
+/**
+ * Filtro de processamento, aqui é onde se tem certeza que tudo ocorreu bem.
+ */
 public class ProcessingFilter implements  Filter{
 
     @Override

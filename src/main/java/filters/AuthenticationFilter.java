@@ -3,9 +3,10 @@ package filters;
 import exceptions.BrokenPipelineException;
 import util.RequestHandler;
 
+/**
+ * Filtro de autenticação, aqui pode-se ver um mock da autenticação de um usuário
+ */
 public class AuthenticationFilter implements Filter {
-
-    //Filtro de autenticação, aqui pode-se ver um mock da autenticação de um usuário
 
     @Override
     public void execute(ContextFilter contexto) {

@@ -2,6 +2,9 @@ package util;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Classe mockada para simular os resultados dos Filters.
+ */
 public class RequestHandler {
 
     public static void handleRequest(String processName, String message) throws InterruptedException {
