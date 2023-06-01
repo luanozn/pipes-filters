@@ -1,26 +1,28 @@
 package filters;
 
-import java.util.concurrent.TimeUnit;
+import exceptions.BrokenPipelineException;
+import util.RequestHandler;
 
 public class AuthenticationFilter implements Filter {
 
+    //Filtro de autenticação, aqui pode-se ver um mock da autenticação de um usuário
+
     @Override
     public void execute(ContextFilter contexto) {
-        System.out.println("---------------- FILTRO DE AUTENTICAÇÃO ---------------");
+
+        boolean mockFailAuth = false;
 
         try {
-            System.out.print("Autenticando");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.print(".");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.print(".");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.println(".");
-            System.out.println("/*----------------------------------------------------------*/");
+            RequestHandler.handleRequest("Autenticação", "Autenticando usuário");
 
-            contexto.setAuthenticated(true);
+            if (mockFailAuth) {
+                throw new BrokenPipelineException("A autenticação falhou! Finalizando pipeline");
+            } else {
+                contexto.setAuthenticated(true);
+            }
+
         } catch (InterruptedException e) {
-            System.out.print("erro");
+            System.out.print(e.getMessage());
         }
     }
 }

@@ -1,26 +1,25 @@
 package filters;
 
-import java.util.concurrent.TimeUnit;
+import exceptions.BrokenPipelineException;
+import util.RequestHandler;
 
 public class ValidationFilter implements Filter{
 
     @Override
     public void execute(ContextFilter contexto) {
-        System.out.println("---------------- FILTRO DE VALIDAÇÃO ---------------");
+        boolean mockFailValidation = false;
 
         try {
-            System.out.print("Validando usuário");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.print(".");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.print(".");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.println(".");
-            System.out.println("/*----------------------------------------------------------*/");
+            RequestHandler.handleRequest("Validação", "Validando pedido");
 
-            contexto.setValidated(true);
+            if (mockFailValidation) {
+                throw new BrokenPipelineException("A Validação falhou! Finalizando pipeline");
+            } else {
+                contexto.setValidated(true);
+            }
+
         } catch (InterruptedException e) {
-            System.out.print("erro");
+            System.out.print(e.getMessage());
         }
     }
 }

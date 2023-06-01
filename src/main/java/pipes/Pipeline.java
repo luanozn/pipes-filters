@@ -1,5 +1,6 @@
 package pipes;
 
+import exceptions.BrokenPipelineException;
 import filters.*;
 
 import java.util.ArrayList;
@@ -17,8 +18,13 @@ public class Pipeline {
     }
 
     public void executarPipeline(ContextFilter contexto) {
-        for (Filter filtro : filtros) {
-            filtro.execute(contexto);
+        try {
+            for (Filter filtro : filtros) {
+                filtro.execute(contexto);
+            }
+        } catch (BrokenPipelineException brokenPipeline) {
+            System.out.println("\n\n");
+            System.out.println(brokenPipeline.getMessage());
         }
     }
 }
